@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class AuthController extends GetxController {
 
-  final Rx<Us
+  //final Rx<Us
 
 
   //login form 
@@ -23,4 +23,5 @@ class AuthController extends GetxController {
 
    
   
+}
 }

@@ -129,7 +129,7 @@ class AppTheme {
 
 class AppConstants {
   static const String appName = 'VIDYEN';
-  static const String appTagline = 'Knowledge. Excellence. Together.';
+  //static const String appTagline = 'Knowledge. Excellence. Together.';
   static const String usersBox = 'users';
   static const String submissionsBox = 'submissions';
   static const String certificatesBox = 'certificates';

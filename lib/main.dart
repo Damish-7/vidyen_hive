@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vidyen_hive/screens/auth/login_screen.dart';
-import 'package:vidyen_hive/screens/home/home_screen.dart';
-import 'package:vidyen_hive/screens/splash/splash_screen.dart';
+import 'package:vidyen_hive/screens/login_screen.dart';
+import 'package:vidyen_hive/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,21 +19,8 @@ class MyApp extends StatelessWidget {
        // colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
+      home: const LoginScreen(),
       
-      initialRoute: '/splash',
-      getPages: [
-        GetPage(
-          name: '/splash',
-          page: () => const SplashScreen(),
-          transition: Transition.fade,
-        ),
-        GetPage(
-          name: '/login',
-          page: () => const LoginScreen(),
-          transition: Transition.fadeIn,
-          transitionDuration: const Duration(milliseconds: 300),
-        ),
-      ],
     );
   }
 }

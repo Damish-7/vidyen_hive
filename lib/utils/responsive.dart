@@ -4,15 +4,11 @@ class Responsive {
   static late MediaQueryData _mediaQueryData;
   static late double screenWidth;
   static late double screenHeight;
-  static late double _blockSizeH;
-  static late double _blockSizeV;
 
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData.size.width;
     screenHeight = _mediaQueryData.size.height;
-    _blockSizeH = screenWidth / 100;
-    _blockSizeV = screenHeight / 100;
   }
 
   // ── BREAKPOINTS ──────────────────────────────────────────────
@@ -20,97 +16,100 @@ class Responsive {
   static bool get isTablet => screenWidth >= 600 && screenWidth < 1024;
   static bool get isDesktop => screenWidth >= 1024;
 
-  // ── FLUID SIZING ─────────────────────────────────────────────
-  /// Percentage of screen width
-  static double w(double percent) => _blockSizeH * percent;
+  // ── SAFE FIXED HELPERS ───────────────────────────────────────
+  // On mobile: always return the raw value unchanged.
+  // On tablet/desktop: add a small fixed increment — never multiply.
 
-  /// Percentage of screen height
-  static double h(double percent) => _blockSizeV * percent;
-
-  /// Responsive font size — scales between min and max
   static double font(double size) {
-    if (isDesktop) return size * 1.2;
-    if (isTablet) return size * 1.1;
+    if (isDesktop) return size + 2;
+    if (isTablet) return size + 1;
     return size;
   }
 
-  /// Responsive spacing
   static double sp(double size) {
-    if (isDesktop) return size * 1.3;
-    if (isTablet) return size * 1.15;
+    if (isDesktop) return size + 4;
+    if (isTablet) return size + 2;
     return size;
   }
 
-  /// Responsive padding — returns EdgeInsets symmetric horizontal
-  static EdgeInsets pagePadding() {
-    if (isDesktop) return EdgeInsets.symmetric(horizontal: w(20));
-    if (isTablet) return EdgeInsets.symmetric(horizontal: w(8));
-    return EdgeInsets.symmetric(horizontal: w(5.5));
+  static double icon(double size) {
+    if (isDesktop) return size + 3;
+    if (isTablet) return size + 1;
+    return size;
   }
 
-  /// Responsive horizontal padding value only
+  static double radius(double r) {
+    if (isDesktop) return r + 3;
+    if (isTablet) return r + 1;
+    return r;
+  }
+
+  static double w(double percent) => screenWidth * percent / 100;
+  static double h(double percent) => screenHeight * percent / 100;
+
   static double pageHPad() {
-    if (isDesktop) return w(20);
-    if (isTablet) return w(8);
-    return w(5.5);
+    if (isDesktop) return 32;
+    if (isTablet) return 24;
+    return 20;
   }
 
-  /// Cross-axis count for grids
-  static int gridCrossAxisCount({int mobile = 2, int tablet = 3, int desktop = 4}) {
+  static EdgeInsets pagePadding() {
+    if (isDesktop) return const EdgeInsets.symmetric(horizontal: 32, vertical: 24);
+    if (isTablet) return const EdgeInsets.symmetric(horizontal: 24, vertical: 20);
+    return const EdgeInsets.symmetric(horizontal: 20, vertical: 16);
+  }
+
+  static int gridCrossAxisCount({
+    int mobile = 2,
+    int tablet = 3,
+    int desktop = 4,
+  }) {
     if (isDesktop) return desktop;
     if (isTablet) return tablet;
     return mobile;
   }
 
-  /// Responsive icon size
-  static double icon(double size) {
-    if (isTablet) return size * 1.15;
-    if (isDesktop) return size * 1.25;
-    return size;
-  }
-
-  /// Card border radius
-  static double radius(double r) {
-    if (isTablet || isDesktop) return r * 1.2;
-    return r;
-  }
-
-  /// Max content width for desktop layouts
+  // On mobile return double.infinity — never constrain mobile width.
   static double get maxContentWidth {
-    if (isDesktop) return 900;
-    if (isTablet) return 700;
-    return screenWidth;
+    if (isDesktop) return 960;
+    if (isTablet) return 720;
+    return double.infinity;
   }
 }
 
-/// Wrap this around any screen body to constrain width on tablet/desktop
+// ── HELPER WIDGETS ────────────────────────────────────────────────────────────
+
 class ResponsiveContainer extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
-
   const ResponsiveContainer({super.key, required this.child, this.padding});
 
   @override
   Widget build(BuildContext context) {
     Responsive.init(context);
-    return Center(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: Responsive.maxContentWidth),
-        child: padding != null ? Padding(padding: padding!, child: child) : child,
-      ),
-    );
+    Widget content = padding != null
+        ? Padding(padding: padding!, child: child)
+        : child;
+    if (!Responsive.isMobile) {
+      content = Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 960),
+          child: content,
+        ),
+      );
+    }
+    return content;
   }
 }
 
-/// Use in build() to init Responsive then return child
 class ResponsiveBuilder extends StatelessWidget {
-  final Widget Function(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) builder;
-
+  final Widget Function(BuildContext, bool, bool, bool) builder;
   const ResponsiveBuilder({super.key, required this.builder});
 
   @override
   Widget build(BuildContext context) {
     Responsive.init(context);
-    return builder(context, Responsive.isMobile, Responsive.isTablet, Responsive.isDesktop);
+    return builder(
+        context, Responsive.isMobile, Responsive.isTablet, Responsive.isDesktop);
   }
 }

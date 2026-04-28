@@ -133,9 +133,9 @@ class ProfileScreen extends StatelessWidget {
               child: Center(child: Text(user.name[0].toUpperCase(), style: GoogleFonts.playfairDisplay(color: AppColors.white, fontSize: Responsive.font(34), fontWeight: FontWeight.w700))),
             ),
             SizedBox(height: Responsive.sp(12)),
-            Text(user.name, style: GoogleFonts.playfairDisplay(color: AppColors.white, fontSize: Responsive.font(22), fontWeight: FontWeight.w700)),
+            Text(user.name, style: GoogleFonts.playfairDisplay(color: AppColors.white, fontSize: Responsive.font(22), fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis, maxLines: 1, textAlign: TextAlign.center),
             SizedBox(height: Responsive.sp(4)),
-            Text(user.designation, style: GoogleFonts.inter(color: AppColors.white70, fontSize: Responsive.font(13))),
+            Text(user.designation, style: GoogleFonts.inter(color: AppColors.white70, fontSize: Responsive.font(13)), overflow: TextOverflow.ellipsis, maxLines: 2, textAlign: TextAlign.center),
             SizedBox(height: Responsive.sp(10)),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               _badge(user.delegateType, AppColors.goldLight, AppColors.gold),
@@ -180,9 +180,9 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(user.name, style: GoogleFonts.playfairDisplay(color: AppColors.white, fontSize: Responsive.font(24), fontWeight: FontWeight.w700)),
+                  Text(user.name, style: GoogleFonts.playfairDisplay(color: AppColors.white, fontSize: Responsive.font(24), fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis, maxLines: 1),
                   SizedBox(height: Responsive.sp(4)),
-                  Text(user.designation, style: GoogleFonts.inter(color: AppColors.white70, fontSize: Responsive.font(14))),
+                  Text(user.designation, style: GoogleFonts.inter(color: AppColors.white70, fontSize: Responsive.font(14)), overflow: TextOverflow.ellipsis, maxLines: 2),
                   SizedBox(height: Responsive.sp(10)),
                   Row(children: [
                     _badge(user.delegateType, AppColors.goldLight, AppColors.gold),
@@ -208,9 +208,9 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _badge(String text, Color textColor, Color borderColor) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-        decoration: BoxDecoration(color: borderColor.withOpacity(0.15), borderRadius: BorderRadius.circular(20), border: Border.all(color: borderColor.withOpacity(0.4))),
-        child: Text(text, style: GoogleFonts.inter(color: textColor, fontSize: 11, fontWeight: FontWeight.w600)),
+        padding: EdgeInsets.symmetric(horizontal: Responsive.sp(8), vertical: Responsive.sp(4)),
+        decoration: BoxDecoration(color: borderColor.withOpacity(0.15), borderRadius: BorderRadius.circular(Responsive.radius(16)), border: Border.all(color: borderColor.withOpacity(0.4))),
+        child: Text(text, style: GoogleFonts.inter(color: textColor, fontSize: Responsive.font(10), fontWeight: FontWeight.w600), overflow: TextOverflow.ellipsis, maxLines: 1),
       );
 
   Widget _detailSection(String title, List<_DR> rows) {
@@ -230,8 +230,8 @@ class ProfileScreen extends StatelessWidget {
                 Icon(r.icon, color: AppColors.accent, size: Responsive.icon(17)),
                 SizedBox(width: Responsive.sp(12)),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(r.label, style: GoogleFonts.inter(color: AppColors.white50, fontSize: Responsive.font(11))),
-                  Text(r.value, style: GoogleFonts.inter(color: AppColors.white, fontSize: Responsive.font(14), fontWeight: FontWeight.w500)),
+                  Text(r.label, style: GoogleFonts.inter(color: AppColors.white50, fontSize: Responsive.font(11)), overflow: TextOverflow.ellipsis, maxLines: 1),
+                  Text(r.value, style: GoogleFonts.inter(color: AppColors.white, fontSize: Responsive.font(14), fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis, maxLines: 2),
                 ])),
               ]),
             )),

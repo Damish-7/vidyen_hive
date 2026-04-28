@@ -35,18 +35,18 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _controller, curve: const Interval(0.3, 0.8, curve: Curves.easeOut)),
     );
     _controller.forward();
-    //_navigate();
+    _navigate();
   }
 
-  // void _navigate() async {
-  //   await Future.delayed(const Duration(seconds: 3));
-  //   final auth = Get.find<AuthController>();
-  //   if (auth.isLoggedIn) {
-  //     Get.offAllNamed(auth.isAdmin ? '/admin-home' : '/home');
-  //   } else {
-  //     Get.offAllNamed('/login');
-  //   }
-  // }
+  void _navigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+    final auth = Get.find<AuthController>();
+    if (auth.isLoggedIn) {
+      Get.offAllNamed(auth.isAdmin ? '/admin-home' : '/home');
+    } else {
+      Get.offAllNamed('/login');
+    }
+  }
 
   @override
   void dispose() {

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import '../models/user_model.dart';
 import '../services/hive_service.dart';
-import '../utils/app_theme.dart';
+//import '../utils/app_theme.dart';
 
 class AuthController extends GetxController {
   final Rx<UserModel?> currentUser = Rx<UserModel?>(null);

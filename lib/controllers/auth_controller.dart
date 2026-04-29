@@ -67,7 +67,7 @@ class AuthController extends GetxController {
         city: city,
         country: country,
         phone: phone,
-        status: 'pending',
+        status: 'pending' ,
         isAdmin: false,
         createdAt: DateTime.now(),
       );

@@ -221,33 +221,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: Responsive.sp(14)),
-                    Container(
-                      padding: EdgeInsets.all(Responsive.sp(12)),
-                      decoration: BoxDecoration(
-                        color: AppColors.gold.withOpacity(0.08),
-                        borderRadius:
-                            BorderRadius.circular(Responsive.radius(10)),
-                        border: Border.all(
-                            color: AppColors.gold.withOpacity(0.2)),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.info_outline,
-                              color: AppColors.gold, size: 16),
-                          SizedBox(width: Responsive.sp(8)),
-                          Expanded(
-                            child: Text(
-                              'Admin: admin@vidyen.org / Admin@123',
-                              style: GoogleFonts.inter(
-                                  color: AppColors.goldLight,
-                                  fontSize: Responsive.font(12)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: Responsive.sp(24)),
+                    // SizedBox(height: Responsive.sp(14)),
+                    // Container(
+                    //   padding: EdgeInsets.all(Responsive.sp(12)),
+                    //   decoration: BoxDecoration(
+                    //     color: AppColors.gold.withOpacity(0.08),
+                    //     borderRadius:
+                    //         BorderRadius.circular(Responsive.radius(10)),
+                    //     border: Border.all(
+                    //         color: AppColors.gold.withOpacity(0.2)),
+                    //   ),
+                    //   child: Row(
+                    //     children: [
+                    //       const Icon(Icons.info_outline,
+                    //           color: AppColors.gold, size: 16),
+                    //       SizedBox(width: Responsive.sp(8)),
+                    //       Expanded(
+                    //         child: Text(
+                    //           'Admin: admin@vidyen.org / Admin@123',
+                    //           style: GoogleFonts.inter(
+                    //               color: AppColors.goldLight,
+                    //               fontSize: Responsive.font(12)),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(height: Responsive.sp(24)),
                   ],
                 ),
               ),

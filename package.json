@@ -1,0 +1,28 @@
+{
+  "name": "vidyen_hive",
+  "version": "1.0.0",
+  "description": "> **Knowledge. Excellence. Together.**",
+  "main": "teach_vidyen.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Damish-7/vidyen_hive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Damish-7/vidyen_hive/issues"
+  },
+  "homepage": "https://github.com/Damish-7/vidyen_hive#readme",
+  "dependencies": {
+    "docx": "^9.6.1"
+  }
+}

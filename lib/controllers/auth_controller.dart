@@ -39,6 +39,8 @@ class AuthController extends GetxController {
     }
   }
 
+  
+
   Future<String?> register({
     required String name,
     required String email,

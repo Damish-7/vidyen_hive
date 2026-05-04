@@ -82,3 +82,7 @@ class AppBindings extends Bindings {
     Get.put<SubmissionController>(SubmissionController(), permanent: true);
   }
 }
+
+//admin login
+// email: admin@vidyen.org
+// passsword: Admin@123
